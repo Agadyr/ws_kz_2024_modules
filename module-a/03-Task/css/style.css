@@ -1,1 +1,78 @@
-/* Work here */
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #f0f0f0;
+	font-family: Arial, sans-serif;
+}
+
+.grid-container {
+	display: grid;
+	gap: 10px;
+	width: 90%;
+    height: 90vh;
+	max-width: 1200px;
+	grid-template-areas:
+		"a a a"
+		"b b e"
+		"c d e";
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto auto auto;
+}
+
+.item {
+	background-color: #ddd;
+	border: 1px solid #ccc;
+	padding: 20px;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.item-a {
+	grid-area: a;
+}
+
+.item-b {
+	grid-area: b;
+}
+
+.item-c {
+	grid-area: c;
+}
+
+.item-d {
+	grid-area: d;
+}
+
+.item-e {
+	grid-area: e;
+}
+
+@media (max-width: 768px) {
+	.grid-container {
+        height: 80vh;
+		grid-template-areas:
+			"a a a"
+			"b b b"
+			"c d d"
+			"e e e";
+		grid-template-columns: 1fr 1fr !important;
+		grid-template-rows: auto auto auto auto !important;
+	}
+
+    .item-b {
+        height: 200px !important;
+    }
+
+    .grid-container div {
+        height: 80px;
+    }
+}

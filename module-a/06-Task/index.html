@@ -7,10 +7,128 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<title>06- Task</title>
+
+	<style>
+		body {
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		}
+
+		.items {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+			margin-top: 100px;
+			counter-reset: sum;
+		}
+
+		.item {
+			position: relative;
+			width: 200px;
+			height: 200px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			font-size: 20px;
+			cursor: pointer;
+
+		}
+
+		.item-label {
+			position: relative;
+			display: inline-flex;
+
+			padding: 25px;
+
+			cursor: pointer;
+		}
+
+		.item input[type="checkbox"] {
+			opacity: 0;
+			position: absolute;
+			z-index: 100;
+
+			width: 100%;
+			height: 100%;
+
+			cursor: pointer;
+		}
+
+		.item input[type="checkbox"]:checked+.item-label {
+			background-color: gold;
+			width: 200px;
+			border-radius: 10px;
+			height: 150px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#checkbox-1:checked+.item-label {
+			counter-increment: sum 10;
+		}
+
+		#checkbox-2:checked+.item-label {
+			counter-increment: sum 32;
+		}
+
+		#checkbox-3:checked+.item-label {
+			counter-increment: sum 64;
+		}
+
+		#checkbox-4:checked+.item-label {
+			counter-increment: sum -15;
+		}
+
+		.sum {
+			padding-top: 40px;
+			text-align: center;
+			font-size: 30px;
+		}
+
+		.sum::after {
+			content: counter(sum);
+		}
+	</style>
 </head>
 
 <body>
 	<!-- Work here -->
+
+	<div class="items">
+		<article class="item">
+			<input type="checkbox" id="checkbox-1" />
+			<label for="checkbox" class="item-label" data-value="10">
+				<span class="item-text">10</span>
+			</label>
+		</article>
+		<article class="item">
+			<input type="checkbox" id="checkbox-2" />
+			<label for="checkbox" class="item-label" data-value="32">
+				<span class="item-text">32</span>
+			</label>
+		</article>
+		<article class="item">
+			<input type="checkbox" id="checkbox-3" />
+			<label for="checkbox" class="item-label" data-value="64">
+				<span class="item-text">64</span>
+			</label>
+		</article>
+		<article class="item">
+			<input type="checkbox" id="checkbox-4" />
+			<label for="checkbox" class="item-label" data-value="-15">
+				<span class="item-text">-15</span>
+			</label>
+		</article>
+	</div>
+
+	<div class="sum">
+		Sum:
+	</div>
 </body>
 
 </html>

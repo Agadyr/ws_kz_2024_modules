@@ -5,15 +5,16 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background-color: #f0f0f0;
-	font-family: Arial, sans-serif;
+	background: linear-gradient(135deg, #edf2f7, #cbd5e0);
+	font-family: 'Poppins', Arial, sans-serif;
+	color: #1a202c;
 }
 
 .grid-container {
 	display: grid;
-	gap: 10px;
+	gap: 15px;
 	width: 90%;
-    height: 90vh;
+	height: 90vh;
 	max-width: 1200px;
 	grid-template-areas:
 		"a a a"
@@ -24,41 +25,67 @@ body {
 }
 
 .item {
-	background-color: #ddd;
-	border: 1px solid #ccc;
+	background: linear-gradient(135deg, #f7fafc, #e2e8f0);
+	border: none;
+	border-radius: 15px;
 	padding: 20px;
 	text-align: center;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
+	color: #2d3748;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.item:hover {
+	transform: scale(1.05);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 
 .item-a {
 	grid-area: a;
+	background: linear-gradient(135deg, #bee3f8, #90cdf4);
 }
 
 .item-b {
 	grid-area: b;
+	background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
 }
 
 .item-c {
 	grid-area: c;
+	background: linear-gradient(135deg, #fed7d7, #feb2b2); 
 }
 
 .item-d {
 	grid-area: d;
+	background: linear-gradient(135deg, #faf089, #f6e05e); 
 }
 
 .item-e {
 	grid-area: e;
+	background: linear-gradient(135deg, #d6bcfa, #b794f4)
+}
+
+.clock {
+	font-size: 3rem;
+	letter-spacing: 1px;
+	color: #2d3748;
+}
+
+.date {
+	font-size: 1.2rem;
+	color: #4a5568;
+	margin-top: 1rem;
 }
 
 @media (max-width: 768px) {
 	.grid-container {
-        height: 80vh;
+		height: 80vh;
 		grid-template-areas:
 			"a a a"
 			"b b b"
@@ -66,13 +93,11 @@ body {
 			"e e e";
 		grid-template-columns: 1fr 1fr !important;
 		grid-template-rows: auto auto auto auto !important;
+		gap: 10px;
 	}
 
-    .item-b {
-        height: 200px !important;
-    }
-
-    .grid-container div {
-        height: 80px;
-    }
+	.item {
+		font-size: 1.2rem;
+		padding: 15px;
+	}
 }

@@ -7,7 +7,23 @@
     <script src="js/tailwindcss-3.4.4.js"></script>
     <link rel="stylesheet" href="css/daisyui.min.css">
     <style>
-        /* Work Here */
+        .steps {
+            background: url('./images/sprite.png');
+            background-position: calc(1024px / 4);
+            animation: spriteAnimation .7s infinite steps(4);
+
+            width: calc(1024px / 4);
+            height: 300px;
+        }
+
+        @keyframes spriteAnimation {
+            from {
+                background-position: 0;
+            }
+            to {
+                background-position: 1024px;
+            }
+        }
     </style>
 </head>
 <body class="min-h-[100vh] flex justify-center items-center bg-slate-400">

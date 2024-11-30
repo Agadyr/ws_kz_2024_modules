@@ -38,7 +38,7 @@ An adaptive design created using HTML and CSS Grid. It works on both large scree
 A JavaScript function that determines how many characters are needed to shift one string forward to match another. If the strings do not match after any valid shift, the function returns `-1`.
 
 **Screenshot:**  
-![Task 4](./images/task-4.png)
+![Task 4](./images/4.png)
 
 ---
 

@@ -14,7 +14,4 @@ use App\Http\Controllers\v1\AuthController;
 |
 */
 
-Route::get('/test', [AuthController::class, 'test']);
-Route::get('/', function () {
-    return response()->json('sadfasdf');
-});
+Route::get('/register', [AuthController::class, 'register']);

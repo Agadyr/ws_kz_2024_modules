@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\AuthController;
-
+use App\Http\Middleware\AdminMiddleware;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +16,8 @@ use App\Http\Controllers\v1\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::middleware(['auth:api', AdminMiddleware::class])->get('/test', function () {
+    return response()->json('just');
+});

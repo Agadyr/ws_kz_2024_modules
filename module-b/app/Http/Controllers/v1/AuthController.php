@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
+use http\Env\Request;
 
 class AuthController extends Controller
 {
@@ -34,4 +35,9 @@ class AuthController extends Controller
         }
         return response()->json($result, 200);
     }
+
+//    public function logout()
+//    {
+//        return response()->json(['request']);
+//    }
 }

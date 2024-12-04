@@ -4,12 +4,12 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\User;
 class AuthService
 {
     public function register(string $name, string $password): array
     {
-        $user = \App\Models\User::create([
+        $user = User::create([
             'name' => $name,
             'password' => Hash::make($password),
         ]);

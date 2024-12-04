@@ -2,9 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use Laravel\Passport\Token;
+
 class AuthService
 {
     public function register(string $name, string $password): array
@@ -47,4 +51,21 @@ class AuthService
             'status' => 401
         ];
     }
+
+    public function revokeToken(?Model $user): JsonResponse
+    {
+        $token = $user->token();
+
+        if ($token instanceof Token) {
+            $token->revoke();
+            return response()->json([
+                'message' => 'Successfully logged out',
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Invalid token',
+        ], 400);
+    }
+
 }

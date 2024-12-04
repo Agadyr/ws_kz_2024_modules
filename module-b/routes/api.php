@@ -17,6 +17,9 @@ use App\Http\Middleware\AdminMiddleware;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::middleware('auth:api')->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
 
 Route::middleware(['auth:api', AdminMiddleware::class])->get('/test', function () {
     return response()->json('just');

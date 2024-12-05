@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\Auth\AuthResource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
@@ -20,37 +21,26 @@ class AuthService
 
         $token = $user->createToken('nomad')->accessToken;
 
-        return [
-            'user' => $user,
-            'role' => 'User',
-            'token' => $token
-        ];
+        return (new AuthResource($user, $token))->toArray(request());
     }
 
     public function login(string $name, string $password): array
     {
-        $role = 'user';
         if (Auth::attempt(['name' => $name, 'password' => $password])) {
             $user = Auth::user();
 
             $token = $user->createToken('nomad')->accessToken;
 
-            if ($user->is_admin === 1) {
-                $role = 'Admin';
-            }
-
-            return [
-                'user' => $user->name,
-                'role' => $role,
-                'token' => $token
-            ];
+            return (new AuthResource($user, $token))->toArray(request());
         }
 
         return [
-            'message' => "user $name is unauthorized",
-            'status' => 401
+            'message' => "User $name is unauthorized",
+            'status' => 401,
         ];
     }
+
+
 
     public function revokeToken(?Model $user): JsonResponse
     {

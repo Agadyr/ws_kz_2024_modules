@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\AuthController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\v1\PlaceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::group(['prefix' => 'place'], function () {
+        Route::get('/all', [PlaceController::class, 'getPlaces']);
+    });
 });
 
 Route::middleware(['auth:api', AdminMiddleware::class])->get('/test', function () {

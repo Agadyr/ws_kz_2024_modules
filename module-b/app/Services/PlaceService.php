@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Place\CreatePlaceRequest;
 use App\Http\Resources\Place\GetPlacesResource;
 use App\Models\Place;
-use Illuminate\Support\Collection;
-use phpseclib3\Math\PrimeField\Integer;
+use App\Services\Poi\PoiFactory;
 
 class PlaceService
 {
@@ -26,5 +26,43 @@ class PlaceService
         }
         return (new GetPlacesResource($place))->toArray(request());
     }
+
+    public function create(CreatePlaceRequest $request): array
+    {
+        try {
+            $imagePath = $request->file('image')->store('places', 'public');
+
+            $coordinates = (new Poi\PoiFactory)->calculate([
+                'latitude' => $request->get('latitude'),
+                'longitude' => $request->get('longitude'),
+            ]);
+
+            Place::create([
+                'name' => $request['name'],
+                'type' => $request['type'],
+                'latitude' => $request->get('latitude'),
+                'longitude' => $request->get('longitude'),
+                'x' => $coordinates['x'],
+                'y' => $coordinates['y'],
+                'image_path' => $imagePath,
+                'open_time' => $request['open_time'],
+                'close_time' => $request['close_time'],
+                'description' => $request['description'] ?? null,
+            ]);
+
+            return [
+                'message' => 'Create success',
+                'status' => 200
+            ];
+
+        } catch (\Exception $e) {
+            return [
+                'message' => 'Data cannot be processed: ' . $e->getMessage(),
+                'status' => 422
+            ];
+        }
+    }
+
+
 
 }

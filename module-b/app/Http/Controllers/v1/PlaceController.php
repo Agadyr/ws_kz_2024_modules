@@ -4,11 +4,11 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Place\CreatePlaceRequest;
-use App\Models\Place;
+use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Services\PlaceService;
+use http\Env\Request;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Js;
+use Illuminate\Support\Facades\Log;
 
 class PlaceController extends Controller
 {
@@ -25,16 +25,32 @@ class PlaceController extends Controller
         return response()->json($data, 200);
     }
 
-    public function getCurrentPlace(string $id): JsonResponse
+    public function index(string $id): JsonResponse
     {
-        $data = $this->placeService->findById($id);
+        $data = $this->placeService->find($id);
 
         return response()->json($data);
     }
 
-    public function createPlace(CreatePlaceRequest $request): JsonResponse
+    public function create(CreatePlaceRequest $request): JsonResponse
     {
-        $data = $this->placeService->create($request);
+        $data = $this->placeService->createPlace($request);
+
+        return response()->json($data);
+    }
+
+    public function update(UpdatePlaceRequest $request, string $id): JsonResponse
+    {
+        Log::info('Request data:', $request->all());
+
+        $data = $this->placeService->updatePlace($request, $id);
+
+        return response()->json($data);
+    }
+
+    public function delete(string $id): JsonResponse
+    {
+        $data = $this->placeService->deletePlace($id);
 
         return response()->json($data);
     }

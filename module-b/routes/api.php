@@ -23,11 +23,12 @@ Route::middleware('auth:api')->group(function () {
 
     Route::group(['prefix' => 'place'], static function () {
         Route::get('/all', [PlaceController::class, 'getPlaces']);
-        Route::get('/{id}', [PlaceController::class, 'getCurrentPlace']);
+        Route::get('/{id}', [PlaceController::class, 'index']);
 
         Route::middleware(AdminMiddleware::class)->group(function () {
-            Route::post('/', [PlaceController::class, 'createPlace']);
-
+            Route::post('/', [PlaceController::class, 'create']);
+            Route::post('/{id}', [PlaceController::class, 'update']);
+            Route::delete('/{id}', [PlaceController::class, 'delete']);
         });
     });
 });

@@ -18,4 +18,6 @@ class Place extends Model
         'y'
     ];
     public $timestamps = false;
+
+
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\Place\CreatePlaceRequest;
 use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Http\Resources\Place\GetPlacesResource;
 use App\Models\Place;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Storage;
 
 class PlaceService
@@ -58,7 +59,7 @@ class PlaceService
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Data cannot be processed: ' . $e->getMessage(),
-                'status' => 422
+                'status' => 400
             ], 200)->getData(true);
         }
     }
@@ -72,7 +73,7 @@ class PlaceService
 
 
             if ($request->hasFile('image')) {
-                $this->updatePlaceImage($place, $request->file('image'));
+                $this->updateOrDeleteImage($place, $request->file('image'), 'update');
             }
 
             if ($request->filled(['latitude', 'longitude'])) {
@@ -89,7 +90,7 @@ class PlaceService
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Data cannot be updated: ' . $e->getMessage(),
-                'status' => 422
+                'status' => 400
             ], 200)->getData(true);
         }
     }
@@ -108,10 +109,14 @@ class PlaceService
         $place->fill($data);
     }
 
-    private function updatePlaceImage(Place $place, $image): void
+    private function updateOrDeleteImage(Place $place, $image, $type): void
     {
         if ($place->image_path && Storage::disk('public')->exists($place->image_path)) {
             Storage::disk('public')->delete($place->image_path);
+        }
+
+        if ($type === 'delete') {
+            return;
         }
 
         $place->image_path = $image->store('places', 'public');
@@ -125,6 +130,25 @@ class PlaceService
         $place->y = $calculatedCoordinates['y'];
     }
 
+    public function deletePlace(string $id): array
+    {
+        try {
+            $place = Place::findOrFail($id);
+            Schedule::deleteRelations($id);
+            $this->updateOrDeleteImage($place, '', 'delete');
 
+            $place->delete();
+
+            return response()->json([
+                'message' => 'delete success',
+            ], 200)->getData(true);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Data cannot be deleted: ' . $e->getMessage(),
+                'status' => 400
+            ], 200)->getData(true);
+        }
+    }
 
 }

@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Place\CreatePlaceRequest;
 use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Services\PlaceService;
-use http\Env\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 
 class PlaceController extends Controller
 {
-    protected $placeService;
+    protected PlaceService $placeService;
 
     public function __construct(PlaceService $placeService)
     {

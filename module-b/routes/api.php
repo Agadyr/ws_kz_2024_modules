@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\AuthController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\v1\PlaceController;
+use App\Http\Controllers\v1\ScheduleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,8 +32,13 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('/{id}', [PlaceController::class, 'delete']);
         });
     });
-});
 
-Route::middleware(['auth:api', AdminMiddleware::class])->get('/test', function () {
-    return response()->json('just');
+    Route::group(['prefix' => 'schedule'], static function () {
+        Route::middleware(AdminMiddleware::class)->group(function () {
+            Route::get('/all', [ScheduleController::class, 'getSchedules']);
+            Route::post('/', [ScheduleController::class, 'create']);
+//            Route::post('/{id}', [PlaceController::class, 'update']);
+//            Route::delete('/{id}', [PlaceController::class, 'delete']);
+        });
+    });
 });

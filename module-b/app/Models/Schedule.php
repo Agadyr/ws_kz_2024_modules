@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+
+    protected $fillable = [
+        'line',
+        'from_place_id',
+        'to_place_id',
+        'departure_time',
+        'arrival_time',
+        'distance',
+        'speed',
+        'status'
+    ];
+    public $timestamps = false;
     public static function deleteRelations(string $id): void
     {
         self::where('from_place_id', $id)

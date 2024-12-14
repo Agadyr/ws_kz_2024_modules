@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\Schedule\CreatePlaceRequest;
 use App\Http\Resources\Schedules\GetSchedulesResource;
 use App\Models\Schedule;
+use Cassandra\Time;
 
 class ScheduleService
 {
@@ -17,13 +18,11 @@ class ScheduleService
 
     public function createSchedule(CreatePlaceRequest $request): array
     {
-        $startTime = strtotime('08:30:00');
-        $endTime = strtotime("18:00:00");
-
         $departureTime = strtotime($request->get('departure_time'));
         $arrivalTime = strtotime($request->get('arrival_time'));
 
-        if ($departureTime < $startTime || $departureTime > $endTime || $arrivalTime < $startTime || $arrivalTime > $endTime) {
+        $timeZoneError = $this->checkTimeZone($departureTime, $arrivalTime);
+        if ($timeZoneError) {
             return response()->json([
                 'message' => 'Data cannot be processed: Times must be between 08:30 and 18:00'
             ], 422)->getData(true);
@@ -48,6 +47,17 @@ class ScheduleService
         } catch (\Exception $e) {
             return response()->json(['message' => 'Data cannot be processed'. $e], 422)->getData(true);
         }
-        return ['a'];
+    }
+
+    private function checkTimeZone(int $departureTime, int $arrivalTime): string
+    {
+        $startTime = strtotime('08:30:00');
+        $endTime = strtotime("18:00:00");
+
+        if ($departureTime < $startTime || $departureTime > $endTime || $arrivalTime < $startTime || $arrivalTime > $endTime) {
+            return 'error';
+        }
+
+        return '';
     }
 }

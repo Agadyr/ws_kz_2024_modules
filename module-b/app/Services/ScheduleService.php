@@ -38,7 +38,7 @@ class ScheduleService
                 'arrival_time' => $request->get('arrival_time'),
                 'distance' => $request->get('distance'),
                 'speed' => $request->get('speed'),
-                'status' =>  $request->get('status'),
+                'status' => $request->get('status'),
             ]);
 
             return response()->json([
@@ -46,7 +46,7 @@ class ScheduleService
             ], 200)->getData(true);
 
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Data cannot be processed'. $e], 422)->getData(true);
+            return response()->json(['message' => 'Data cannot be processed' . $e], 422)->getData(true);
         }
     }
 
@@ -71,7 +71,26 @@ class ScheduleService
             ], 200)->getData(true);
 
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Data cannot be updated'. $e], 400)->getData(true);
+            return response()->json(['message' => 'Data cannot be updated' . $e], 400)->getData(true);
+        }
+    }
+
+
+    public function deleteSchedule($id): array
+    {
+        $schedule = Schedule::findOrFail($id);
+
+        try {
+            $schedule->delete();
+
+            return response()->json([
+                'message' => 'delete success',
+            ], 200)->getData(true);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Data cannot be deleted'
+            ], 400)->getData(true);
         }
     }
 
@@ -89,6 +108,7 @@ class ScheduleService
         ]);
         $schedule->fill($data);
     }
+
     private function checkTimeZone($request): string
     {
         $departureTime = strtotime($request->get('departure_time'));

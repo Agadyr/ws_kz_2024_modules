@@ -38,6 +38,7 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/all', [ScheduleController::class, 'getSchedules']);
             Route::post('/', [ScheduleController::class, 'create']);
             Route::post('/{id}', [ScheduleController::class, 'update']);
+            Route::delete('/{id}', [ScheduleController::class, 'delete']);
         });
     });
 });

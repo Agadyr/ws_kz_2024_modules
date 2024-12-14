@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Http\Requests\Schedule\CreateScheduleRequest;
 use App\Http\Requests\Schedule\UpdateScheduleRequest;
 use App\Services\ScheduleService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -36,6 +34,13 @@ class ScheduleController extends Controller
     public function update(UpdateScheduleRequest $request, string $id): JsonResponse
     {
         $data = $this->scheduleService->updateSchedule($request, $id);
+
+        return response()->json($data);
+    }
+
+    public function delete(string $id): JsonResponse
+    {
+        $data = $this->scheduleService->deleteSchedule($id);
 
         return response()->json($data);
     }

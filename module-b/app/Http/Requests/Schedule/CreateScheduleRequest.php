@@ -4,7 +4,7 @@ namespace App\Http\Requests\Schedule;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePlaceRequest extends FormRequest
+class CreateScheduleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

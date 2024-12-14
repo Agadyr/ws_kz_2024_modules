@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
-use App\Http\Requests\Schedule\CreatePlaceRequest;
+use App\Http\Requests\Place\UpdatePlaceRequest;
+use App\Http\Requests\Schedule\CreateScheduleRequest;
+use App\Http\Requests\Schedule\UpdateScheduleRequest;
 use App\Http\Resources\Schedules\GetSchedulesResource;
+use App\Models\Place;
 use App\Models\Schedule;
-use Cassandra\Time;
 
 class ScheduleService
 {
@@ -16,12 +18,11 @@ class ScheduleService
         return GetSchedulesResource::collection($schedules)->toArray(request());
     }
 
-    public function createSchedule(CreatePlaceRequest $request): array
+    public function createSchedule(CreateScheduleRequest $request): array
     {
-        $departureTime = strtotime($request->get('departure_time'));
-        $arrivalTime = strtotime($request->get('arrival_time'));
 
-        $timeZoneError = $this->checkTimeZone($departureTime, $arrivalTime);
+        $timeZoneError = $this->checkTimeZone($request);
+
         if ($timeZoneError) {
             return response()->json([
                 'message' => 'Data cannot be processed: Times must be between 08:30 and 18:00'
@@ -49,10 +50,56 @@ class ScheduleService
         }
     }
 
-    private function checkTimeZone(int $departureTime, int $arrivalTime): string
+    public function updateSchedule(UpdateScheduleRequest $request, string $id)
     {
+        $schedule = Schedule::findOrFail($id);
+
+        $timeZoneError = $this->checkTimeZone($request);
+
+        if ($timeZoneError) {
+            return response()->json([
+                'message' => 'Data cannot be processed: Times must be between 08:30 and 18:00'
+            ], 422)->getData(true);
+        }
+
+        try {
+            $this->updateScheduleData($schedule, $request);
+            $schedule->save();
+
+            return response()->json([
+                'message' => 'Update success',
+            ], 200)->getData(true);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Data cannot be updated'. $e], 400)->getData(true);
+        }
+    }
+
+    private function updateScheduleData(Schedule $schedule, UpdateScheduleRequest $request): void
+    {
+        $data = $request->only([
+            'line',
+            'from_place_id',
+            'to_place_id',
+            'departure_time',
+            'arrival_time',
+            'distance',
+            'speed',
+            'status'
+        ]);
+        $schedule->fill($data);
+    }
+    private function checkTimeZone($request): string
+    {
+        $departureTime = strtotime($request->get('departure_time'));
+        $arrivalTime = strtotime($request->get('arrival_time'));
+
         $startTime = strtotime('08:30:00');
         $endTime = strtotime("18:00:00");
+
+        if (!$departureTime || !$arrivalTime) {
+            return '';
+        }
 
         if ($departureTime < $startTime || $departureTime > $endTime || $arrivalTime < $startTime || $arrivalTime > $endTime) {
             return 'error';

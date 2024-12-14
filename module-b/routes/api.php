@@ -37,8 +37,7 @@ Route::middleware('auth:api')->group(function () {
         Route::middleware(AdminMiddleware::class)->group(function () {
             Route::get('/all', [ScheduleController::class, 'getSchedules']);
             Route::post('/', [ScheduleController::class, 'create']);
-//            Route::post('/{id}', [PlaceController::class, 'update']);
-//            Route::delete('/{id}', [PlaceController::class, 'delete']);
+            Route::post('/{id}', [ScheduleController::class, 'update']);
         });
     });
 });

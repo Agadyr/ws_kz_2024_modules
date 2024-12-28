@@ -5,6 +5,7 @@ use App\Http\Controllers\v1\AuthController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\v1\PlaceController;
 use App\Http\Controllers\v1\ScheduleController;
+use App\Http\Controllers\v1\RouteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,5 +41,9 @@ Route::middleware('auth:api')->group(function () {
             Route::post('/{id}', [ScheduleController::class, 'update']);
             Route::delete('/{id}', [ScheduleController::class, 'delete']);
         });
+    });
+    Route::group(['prefix' => 'route'], static function () {
+        Route::get('/search/{from_place_id}/{to_place_id}/', [RouteController::class, 'getRoutesByPlaces']);
+//        Route::delete('/{id}/{}', [ScheduleController::class, 'delete']);
     });
 });

@@ -2,11 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Requests\Place\UpdatePlaceRequest;
 use App\Http\Requests\Schedule\CreateScheduleRequest;
 use App\Http\Requests\Schedule\UpdateScheduleRequest;
 use App\Http\Resources\Schedules\GetSchedulesResource;
-use App\Models\Place;
 use App\Models\Schedule;
 
 class ScheduleService

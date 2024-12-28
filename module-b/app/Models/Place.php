@@ -19,5 +19,9 @@ class Place extends Model
     ];
     public $timestamps = false;
 
+    public function getPlaceById($id)
+    {
+
+    }
 
 }

@@ -24,4 +24,15 @@ class Schedule extends Model
             ->orWhere('to_place_id', $id)
             ->delete();
     }
+
+    public function fromPlace()
+    {
+        return $this->belongsTo(Place::class, 'from_place_id');
+    }
+
+    public function toPlace()
+    {
+        return $this->belongsTo(Place::class, 'to_place_id');
+    }
+
 }

@@ -44,6 +44,6 @@ Route::middleware('auth:api')->group(function () {
     });
     Route::group(['prefix' => 'route'], static function () {
         Route::get('/search/{from_place_id}/{to_place_id}/', [RouteController::class, 'getRoutesByPlaces']);
-//        Route::delete('/{id}/{}', [ScheduleController::class, 'delete']);
+        Route::post('/selection', [RouteController::class, 'selectionRoutes']);
     });
 });

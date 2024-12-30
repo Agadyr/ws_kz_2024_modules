@@ -1,66 +1,215 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Nomad Tour - RESTful Web Service API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Description
+This project is a RESTful web service API for "Nomad Tour," a local startup in Astana providing an on-demand hop-on-hop-off bus service. Users can plan itineraries, view nearby attractions, and call buses via the website. The project is implemented in Laravel with Passport for authentication.
 
-## About Laravel
+## Features
+1. **User Authentication**:
+   - Login: Obtain authorization token (JWT-based via Laravel Passport).
+   - Logout: Invalidate the token.
+2. **Places Management**:
+   - List all places.
+   - Retrieve a specific place by ID.
+   - Create, update, and delete places (Admin only).
+3. **Schedules Management**:
+   - List all schedules (Admin only).
+   - Create, update, and delete schedules (Admin only).
+4. **Route Management**:
+   - Search for routes between two places.
+   - Save user-selected routes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
+- PHP >= 8.0
+- Composer
+- Laravel >= 10.x
+- Laravel Passport
+- MySQL
+- OpenServer or any compatible server environment
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/your-repo/nomad-tour.git
+cd nomad-tour
+```
 
-## Learning Laravel
+### Step 2: Install Dependencies
+```bash
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Step 3: Environment Configuration
+1. Copy the `.env.example` file and rename it to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+2. Update the database configuration in the `.env` file:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=nomad_tour
+   DB_USERNAME=root
+   DB_PASSWORD=yourpassword
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Step 4: Generate Application Key
+```bash
+php artisan key:generate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Step 5: Migrate and Seed Database
+Run the migrations to create the necessary tables and seed initial data:
+```bash
+php artisan migrate --seed
+```
 
-## Laravel Sponsors
+### Step 6: Install Laravel Passport
+```bash
+php artisan passport:install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Step 7: Serve the Application
+Start the development server:
+```bash
+php artisan serve
+```
+The application will be accessible at `http://127.0.0.1:8000`.
 
-### Premium Partners
+## API Endpoints
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Authentication
+- **Login**
+  - URL: `/api/v1/auth/login`
+  - Method: `POST`
+  - Request Body:
+    ```json
+    {
+      "username": "admin",
+      "password": "adminpass"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "token": "your_auth_token",
+      "role": "ADMIN"
+    }
+    ```
 
-## Contributing
+- **Logout**
+  - URL: `/api/v1/auth/logout`
+  - Method: `GET`
+  - Header: `Authorization: Bearer <token>`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Places
+- **Get All Places**
+  - URL: `/api/v1/place`
+  - Method: `GET`
+  - Header: `Authorization: Bearer <token>`
 
-## Code of Conduct
+- **Get Place by ID**
+  - URL: `/api/v1/place/{ID}`
+  - Method: `GET`
+  - Header: `Authorization: Bearer <token>`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Create Place (Admin Only)**
+  - URL: `/api/v1/place`
+  - Method: `POST`
+  - Header: `Authorization: Bearer <token>`
+  - Request Body:
+    ```json
+    {
+      "name": "Example Place",
+      "type": "Attraction",
+      "latitude": 51.169392,
+      "longitude": 71.449074,
+      "image": "image_file",
+      "open_time": "08:00",
+      "close_time": "18:00",
+      "description": "A beautiful place."
+    }
+    ```
 
-## Security Vulnerabilities
+- **Update Place (Admin Only)**
+  - URL: `/api/v1/place/{ID}`
+  - Method: `PUT`
+  - Header: `Authorization: Bearer <token>`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Delete Place (Admin Only)**
+  - URL: `/api/v1/place/{ID}`
+  - Method: `DELETE`
+  - Header: `Authorization: Bearer <token>`
 
-## License
+### Schedules
+- **Get All Schedules (Admin Only)**
+  - URL: `/api/v1/schedule`
+  - Method: `GET`
+  - Header: `Authorization: Bearer <token>`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Create Schedule (Admin Only)**
+  - URL: `/api/v1/schedule`
+  - Method: `POST`
+  - Header: `Authorization: Bearer <token>`
+  - Request Body:
+    ```json
+    {
+      "line": "Line A",
+      "from_place_id": 1,
+      "to_place_id": 2,
+      "departure_time": "09:00",
+      "arrival_time": "09:30",
+      "distance": 5.0,
+      "speed": 50
+    }
+    ```
+
+- **Update Schedule (Admin Only)**
+  - URL: `/api/v1/schedule/{ID}`
+  - Method: `PUT`
+  - Header: `Authorization: Bearer <token>`
+
+- **Delete Schedule (Admin Only)**
+  - URL: `/api/v1/schedule/{ID}`
+  - Method: `DELETE`
+  - Header: `Authorization: Bearer <token>`
+
+### Routes
+- **Search Routes**
+  - URL: `/api/v1/route/search/{FROM_PLACE_ID}/{TO_PLACE_ID}/[DEPARTURE_TIME]`
+  - Method: `GET`
+  - Header: `Authorization: Bearer <token>`
+
+- **Store Route Selection History**
+  - URL: `/api/v1/route/selection`
+  - Method: `POST`
+  - Header: `Authorization: Bearer <token>`
+  - Request Body:
+    ```json
+    {
+      "from_place_id": 1,
+      "to_place_id": 2,
+      "schedule_ids": [1, 2, 3]
+    }
+    ```
+
+## Database
+- **Database Dump**: The SQL dump is located in the `db-dump/XX_database.sql` file.
+- **ERD**: The ERD screenshot is located in the `db-dump/XX_ERD.png` file.
+
+## Users for Testing
+- Admin:
+  - Username: `admin`
+  - Password: `adminpass`
+- User1:
+  - Username: `user1`
+  - Password: `user1pass`
+- User2:
+  - Username: `user2`
+  - Password: `user2pass`
+
+## Notes
+- The project follows Laravel's standard structure for controllers, models, and migrations.
+- Authentication and role-based authorization are handled using Laravel Passport.
+- All API responses adhere to the JSON format as specified.

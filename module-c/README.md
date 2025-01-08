@@ -1,50 +1,105 @@
-# React + TypeScript + Vite
+# Front-end Olympics Medals - WorldSkills Kazakhstan 2024
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+- [Introduction](#introduction)
+- [Project Description and Requirements](#project-description-and-requirements)
+- [Pages Overview](#pages-overview)
+  - [Welcome Page](#welcome-page)
+  - [Countries Page](#countries-page)
+  - [Country Page](#country-page)
+  - [Medals by Discipline Page](#medals-by-discipline-page)
+  - [Disciplines Page](#disciplines-page)
+  - [Discipline by Countries Page](#discipline-by-countries-page)
+  - [Discipline by Country Page](#discipline-by-country-page)
+- [Screenshots](#screenshots)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
 
-## Expanding the ESLint configuration
+**Task Duration**: 2 hours
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Develop a mobile-optimized web application that allows users to view the Olympic medal standings for the 2024 Paris Olympics. The app should utilize a REST API to retrieve and sort data by medal type, discipline, and country.
 
-- Configure the top-level `parserOptions` property like this:
+**Endpoint**:  
+`http://localhost:3000/countries`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+To run the server, use the following command in the console:  
+`json-server --watch json/db.json`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Design Expectations
+- The app should be mobile-optimized, with the primary test environment being the iPhone 14 Pro screen size.
+- The design must follow the provided mockups, with content displayed in fullscreen mode and vertical scrolling when necessary.
+- Layouts and images are located in the `media/layouts` and `media/images/` directories, respectively.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Project Description and Requirements
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The application consists of seven pages:
+
+1. Welcome Page
+2. Countries Page
+3. Country-specific Page (displays the medal count for a selected country)
+4. Medals by Discipline Page (displays medal counts by discipline type)
+5. Disciplines Page
+6. Discipline by Countries Page (displays medal counts by country in a discipline)
+7. Discipline by Country Page (displays medal counts for a country in a specific discipline)
+
+## Pages Overview
+
+### Welcome Page
+- Displays buttons to navigate to the Countries Page and the Disciplines Page.
+- On clicking "Countries," the user is directed to the Countries Page.
+- On clicking "Disciplines," the user is directed to the Disciplines Page.
+
+### Countries Page
+- Displays a list of countries with flags and names retrieved from the API.
+- On clicking a country, the user is directed to the Country-specific Page.
+- The back button returns to the Welcome Page.
+
+### Country Page
+- Displays the medal counts (gold, silver, bronze) and the total medal count for the selected country.
+- On clicking a medal type (gold, silver, bronze), the user is directed to the Medals by Discipline Page.
+- The back button returns to the Countries Page.
+
+### Medals by Discipline Page
+- Displays a list of disciplines with the corresponding medal counts of the selected type and the total count.
+- The back button returns to the Country Page.
+
+### Disciplines Page
+- Displays a list of disciplines with icons and names.
+- On clicking a discipline, the user is directed to the Discipline by Countries Page.
+- The back button returns to the Welcome Page.
+
+### Discipline by Countries Page
+- Displays a list of countries that participated in the selected discipline, along with their total medal count in that discipline.
+- The back button returns to the Disciplines Page.
+- On clicking a country, the user is directed to the Discipline by Country Page.
+
+### Discipline by Country Page
+- Displays the gold, silver, and bronze medal counts for the selected country in the chosen discipline, along with the total medal count.
+- The back button returns to the Discipline by Countries Page.
+
+## Screenshots
+
+Below are the screenshots for each page.
+
+### Welcome Page
+![Welcome Page Screenshot](media/welcome_page.png)
+
+### Countries Page
+![Countries Page Screenshot](media/countries_page.png)
+
+### Country-specific Page
+![Country-specific Page Screenshot](media/country_page.png)
+
+### Medals by Discipline Page
+![Medals by Discipline Page Screenshot](media/medals_by_discipline_page.png)
+
+### Disciplines Page
+![Disciplines Page Screenshot](media/discipline_page.png)
+
+### Discipline by Countries Page
+![Discipline by Countries Page Screenshot](medias/discipline_by_countries_page.png)
+
+### Discipline by Country Page
+![Discipline by Country Page Screenshot](media/discipline_by_country_page.png)
+

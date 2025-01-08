@@ -15,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/country/:countryName/:medal" element={<Medal />} />
       <Route path="/disciplines" element={<Disciplines />} />
       <Route path="/discipline/:disciplineName" element={<Discipline />} />
+      <Route path="/discipline/:disciplineName:countryName" element={<Discipline />} />
     </Routes>
   );
 };

@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+.prev {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+}
+
 .medalsTable {
   width: 100%;
   border-collapse: collapse;
@@ -31,4 +37,11 @@
     text-align: left;
     text-decoration: underline;
   }
+}
+
+.h3 {
+  font-weight: bold;
+  font-size: 36px;
+  color: white;
+  margin: 20px 0;
 }

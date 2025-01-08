@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGetCountriesQuery } from "../../services/api";
 import styles from "./Discipline.module.scss";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { CountryType } from "../../types/country";
 import DisciplineTable from "../../components/DisciplineTable/DisciplineTable";
 
@@ -30,10 +30,6 @@ const Discipline = () => {
   console.log(disciplines);
   return (
     <section className={styles.countrySection}>
-      <Link to="/disciplines" className={styles.prev}>
-        <img src="/images/ico-prev.svg" alt="prev page" />
-      </Link>
-
       {disciplines ? (
         <>
           <h1 className={styles.h1}>{disciplineName}</h1>

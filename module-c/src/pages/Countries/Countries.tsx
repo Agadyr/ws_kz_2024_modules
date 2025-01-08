@@ -15,12 +15,12 @@ const Countries = () => {
   }
   return (
     <section>
-        <Link to={'/'} className={styles.prev}>
+        <Link to={'/welcome'} className={styles.prev}>
           <img src="/images/ico-prev.svg" alt="prev page" />
         </Link>
         <h1 className={styles.h1}>Countries</h1>
         {data.map((item: UniqButton) => (
-            <Button key={item.id} id={item.id} flag={item.flag} name={item.name} onClick={onClick}/>
+            <Button link="country" key={item.id} id={item.id} flag={item.flag} name={item.name} onClick={onClick}/>
         ))}
     </section>
   )

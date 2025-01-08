@@ -19,7 +19,7 @@ const Country = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) console.error(error)
-  
+  console.log(countryName);
   return (
     <section className={styles.countrySection}>
       <Link to="/countries" className={styles.prev}>
@@ -31,18 +31,20 @@ const Country = () => {
           <h1 className={styles.h1}>{item.name}</h1>
           <img src={`/${item.flag}`} alt={`${item.name} flag`} className={styles.flag} />
           <CountryTable country={item} />
-          <Link to={`${countryName}/gold/medals`} className={`button-bordered-white ${styles.link}`}>
-                <img  width={40} src="/images/medals/gold.png" alt="" />
-                Medals
-          </Link>
-          <Link to={`${countryName}/silver/medals`} className={`button-bordered-white ${styles.link}`}>
-                <img  width={40} src="/images/medals/silver.png" alt="" />
-                Medals
-          </Link>
-          <Link to={`${countryName}/gold/bronze`} className={`button-bordered-white ${styles.link}`}>
-                <img  width={40} src="/images/medals/bronze.png" alt="" />
-                Medals
-          </Link>
+          <div className={styles.medals}>
+            <Link to={`/country/${countryName}/${`gold`}`} className={`button-bordered-white ${styles.link}`}>
+                  <img  width={40} src="/images/medals/gold.png" alt="" />
+                  Medals
+            </Link>
+            <Link to={`/country/${countryName}/${'silver'}`} className={`button-bordered-white ${styles.link}`}>
+                  <img  width={40} src="/images/medals/silver.png" alt="" />
+                  Medals
+            </Link>
+            <Link to={`/country/${countryName}/${'bronze'}`} className={`button-bordered-white ${styles.link}`}>
+                  <img  width={40} src="/images/medals/bronze.png" alt="" />
+                  Medals
+            </Link>
+          </div>
         </>
       ) : (
         <div>Country not found</div>

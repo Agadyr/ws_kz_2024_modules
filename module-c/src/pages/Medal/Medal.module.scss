@@ -1,8 +1,11 @@
-.h1 {
+.h1, .medal, .count {
     font-weight: bold;
-    font-size: 48px;
     color: white;
     margin-bottom: 10px;
+}
+ 
+.h1 {
+    font-size: 48px;
     margin-top: 20px;
 }
 
@@ -12,14 +15,12 @@
     top: 40px;
 }
 
-.link {
-    padding: 5px 20px;
-    width: 80%;
-    margin: 3px auto;
-    gap: 15px;
-    font-size: 20px;
+.medal {
+    font-size: 25px;
+    margin-bottom: 0;
 }
 
-.medals {
-    margin-top: 30px;
+.count {
+    margin-top: 0;
+    font-size: 70px;
 }

@@ -4,10 +4,10 @@ import { UniqButton } from '../../types/country'
 
 
 
-const Button = ({flag, name, onClick}: UniqButton) => {
+const Button = ({flag, name, onClick, link}: UniqButton) => {
   return (
     <>
-      <Link to={`/country/${name}`} className={`button-bordered-white ${styles.link}`} onClick={() => onClick(name)}>
+      <Link to={`/${link}/${name}`} className={`button-bordered-white ${styles.link}`} onClick={() => onClick(name)}>
           <img src={flag} alt="" />
           {name}
       </Link>

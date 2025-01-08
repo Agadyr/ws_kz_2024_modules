@@ -1,0 +1,34 @@
+.tableContainer {
+  margin: 20px auto;
+  width: 100%;
+}
+
+.medalsTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #fff;
+    font-size: 20px;
+  }
+
+  th {
+    border-top: none;
+    font-size: 20px; 
+    font-weight: 600;
+  }
+
+  td {
+    border-bottom: none;
+    font-size: 22px;
+  }
+
+  .country {
+    text-align: left;
+    text-decoration: underline;
+  }
+}

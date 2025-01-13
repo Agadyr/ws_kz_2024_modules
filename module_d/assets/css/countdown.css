@@ -1,0 +1,76 @@
+/* Countdown Styles */
+
+.countdown__container {
+    padding-bottom: 0;
+}
+
+.countdown__date {
+    margin-top: 3.5rem;
+
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.countdown__date p {
+    line-height: 1;
+}
+
+.countdown__date small {
+    color: var(--gray-color);
+
+    font-size: 0.7rem;
+}
+
+.countdown__timer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.countdown__timer>* {
+    flex-basis: 33.3%;
+}
+
+.timer__value {
+    font-family: 'Paris2024', serif;
+
+    font-weight: 500;
+    font-size: clamp(4rem, 16vw, 6rem);
+
+    line-height: 1;
+
+    color: var(--dark-gray-color);
+}
+
+.timer__label {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    color: var(--gray-color);
+
+    font-family: 'Paris2024', serif;
+}
+
+@media screen and (max-width: 1024px) {
+    .countdown__timer {
+        padding-top: 1rem;
+
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .countdown__container .title::after {
+        bottom: -32%;
+        left: -20%;
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .countdown__container .title::after {
+        bottom: -40%;
+        left: -40%;
+        transform: scale(0.65);
+    }
+}

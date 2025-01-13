@@ -1,0 +1,141 @@
+/* About Styles */
+
+.about__container .title::after {
+    left: -14%;
+}
+
+.about__container {
+    padding: 2rem 2rem 2rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.about__items {
+    padding-top: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.about__item {
+    flex: 1 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+
+    background-color: var(--light-gray-color);
+
+    border-radius: 0.25rem;
+}
+
+.about__item p {
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.about__header {
+    background-color: var(--danger-color);
+    color: white;
+    font-family: 'Paris2024', serif;
+
+    padding: 0.5rem 0.5rem;
+
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.about__img {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.about__img img {
+    width: 100%;
+
+    transition: all .3s ease;
+}
+
+.about__img:hover img {
+    transform: scale(1.5);
+}
+
+.about__logo {
+    display: flex;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* adaptive */
+
+@media screen and (max-width: 1024px) {
+    .about__items {
+        padding-top: 3rem;
+    }
+
+    .about__container {
+        padding: 4rem 2rem 1rem 2rem;
+    }
+
+    .about__item:nth-of-type(n + 3) {
+        display: none;
+    }
+
+    .partners__nav {
+        display: flex;
+    }
+
+    .about__container .title::after {
+        left: -7%;
+    }
+
+    .about__item {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+
+    .about__nav {
+        justify-content: end !important;
+    }
+
+    .about__container .title::after {
+        bottom: -39%;
+        left: -12%;
+        transform: scale(0.95);
+    }
+
+    .about__container {
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 799px) {
+
+    .about__item:nth-of-type(n + 2) {
+        display: none;
+    }
+
+    .partners__nav {
+        margin-top: 1rem;
+
+        justify-content: space-between !important;
+    }
+
+    .about__container .title {
+        font-size: 2.8rem;
+    }
+
+    .about__container .title::after {
+        bottom: -39%;
+        left: -22%;
+        transform: scale(0.65);
+    }
+
+    .about__item {
+        flex: 1 1 calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
+    }
+}

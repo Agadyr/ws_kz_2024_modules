@@ -1,58 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris 2024</title>
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/header.css">
+
+    <link rel="stylesheet" href="./assets/css/globals.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/hero.css" />
+    <link rel="stylesheet" href="./assets/css/countdown.css" />
+    <link rel="stylesheet" href="./assets/css/road.css" />
+    <link rel="stylesheet" href="./assets/css/about.css" />
+    <link rel="stylesheet" href="./assets/css/shop.css" />
+    <link rel="stylesheet" href="./assets/css/partners.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
 </head>
+
 <body>
-    <header>
-        <img src="/media/03-images/logo-black.png" alt="Logo">
-        <ul>
-            <li>CountDown</li>
-            <li>Road to Paris</li>
-            <li>About the Games</li>
-            <li>Olympic Shop</li>
-            <li>Worldwide Partners</li>
-        </ul>
-    </header>
+    <div class="wrapper">
+        <header class="header" id="header">
+            <div class="header__logo">
+                <img src="./assets/images/logo-black.png" alt="Paris Black Logo" />
+            </div>
 
-    <section class="main">
-        <div class="content-main">
-            <h1>The Olympics Games</h1>
-            <h3>of Paris 2024</h3>
-            <img src="media/03-images/logos-white.png" alt="white logo">
-        </div>
-        <img class="mascot" src="media/03-images/mascot-lg.png" alt="mascot">
-    </section>
+            <label for="header__hamburger">
+                <img src="./assets/images/menuburger.svg" alt="Hamburger Menu" />
+            </label>
 
-    <section class="count-down">
-        <div class="title-grad">
-            <h2>CountDown</h2>
-            <img src="/media/03-images/lines-titles.png" alt="lines titles">
-        </div>
-        <p>Olympic Games Paris 2024</p>
-        <span>26 July - 11 August</span>
-        <div class="clock">
-            <h3>28</h3>
-            <h3>13</h3>
-            <h3>45</h3>
-            <h3>05</h3>
-        </div>
-        <img class="logos-countdown" src="/media/03-images/logos-countdown.png" alt="count-down logo">
-    </section>
+            <input type="checkbox" id="header__hamburger" hidden />
 
-    <section class="news">
-        <div class="title-grad">
-            <h2>Road to Paris</h2>
-            <img class="right-line" src="/media/03-images/lines-titles.png" alt="lines titles">
-        </div>
-        <div class="news-item">
+            <nav class="header__nav" role="navigation">
+                <ul class="nav__list" role="menubar">
+                    <li class="nav__item" role="menuitem">
+                        <a class="nav__link" href="#countdown">
+                            CountDown
+                        </a>
+                    </li>
+                    <li class="nav__item" role="menuitem">
+                        <a class="nav__link" href="#road-to-paris">
+                            Road to Paris
+                        </a>
+                    </li>
+                    <li class="nav__item" role="menuitem">
+                        <a class="nav__link" href="#about-the-games">
+                            About the Games
+                        </a>
+                    </li>
+                    <li class="nav__item" role="menuitem">
+                        <a class="nav__link" href="#olympic-shop">
+                            Olympic Shop
+                        </a>
+                    </li>
+                    <li class="nav__item" role="menuitem">
+                        <a class="nav__link" href="#worldwide-partners">
+                            Worldwide Partners
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-        </div>
-    </section>
+        <main class="main">
+            <section class="section__hero" id="hero" aria-label="Section Hero">
+                <div class="hero__container">
+                    <div class="hero__content">
+                        <h1>
+                            The Olympics Games
+                        </h1>
+                        <h2>
+                            of Paris 2024
+                        </h2>
+
+                        <img class="content__logo" src="./assets/images/logos-white.png" alt="Paris White Logo" />
+                    </div>
+
+                    <picture>
+                        <source sizes="100vw" media="(min-width: 1024px)" srcset="./assets/images/mascot-lg.png" />
+                        <source sizes="100vw" media="(min-width: 800px)" srcset="./assets/images/mascot-md.png" />
+                        <source sizes="100vw" media="(min-width: 0px)" srcset="./assets/images/mascot-sm.png" />
+
+                        <img class="hero__mascot" src="./assets/images/mascot-lg.png" alt="Mascot Picture" />
+                    </picture>
+
+                    <div class="hero__nav">
+                        <img class="hero__prev-btn" src="./assets/images/btn-prev.svg" alt="Prev Button" />
+                        <div class="hero__circles">
+                            <div class="active"></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <img class="hero__next-btn" src="./assets/images/btn-next.svg" alt="Next Button" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="section__countdown" id="countdown" aria-label="Section CountDown">
+                <div class="countdown__container">
+                    <h2 class="title">
+                        CountDown
+                    </h2>
+
+                    <div class="countdown__date">
+                        <p>
+                            Olympic Games Paris 2024
+                        </p>
+                        <small>
+                            26 July - 11 August,
+                        </small>
+                    </div>
+
+                    <div class="countdown__timer">
+                        <div>
+                        </div>
+                        <div>
+                            <div class="timer__value">
+                                28<span>:</span>13<span>:</span>45<span>:</span>05
+                            </div>
+                            <div class="timer__label">
+                                <div>Days</div>
+                                <div>Hours</div>
+                                <div>Minutes</div>
+                                <div>Seconds</div>
+                            </div>
+                        </div>
+
+                        <img src="./assets/images/logos-countdown.png" alt="Countdown Logo" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="section__road" id="road-to-paris" aria-label="Section Road to Paris">
+                <div class="road__container">
+                    <h2 class="title-2">
+                        Road to Paris
+                    </h2>
+                    <div class="road__items">
+                        <article class="road__item">
+                            <div class="road__img">
+                                <img src="./assets/images/road-01.png" alt="Road 01 Image" />
+                            </div>
+
+                            <div class="road__content">
+                                <h4>
+                                    2024 FIBA
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore.
+                                </p>
+
+                                <div>
+                                    <p>02-05 May</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="road__item">
+                            <div class="road__img">
+                                <img src="./assets/images/road-01.png" alt="Road 01 Image" />
+                            </div>
+
+                            <div class="road__content">
+                                <h4>
+                                    2024 UWV
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore.
+                                </p>
+
+                                <div>
+                                    <p>02-05 May</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="road__item">
+                            <div class="road__img">
+                                <img src="./assets/images/road-01.png" alt="Road 01 Image" />
+                            </div>
+
+                            <div class="road__content">
+                                <h4>
+                                    2024 UIPM
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore.
+                                </p>
+
+                                <div>
+                                    <p>02-05 May</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="road__item">
+                            <div class="road__img">
+                                <img src="./assets/images/road-01.png" alt="Road 01 Image" />
+                            </div>
+
+                            <div class="road__content">
+                                <h4>
+                                    2024 ISSF
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore.
+                                </p>
+
+                                <div>
+                                    <p>02-05 May</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="partners__nav road__nav">
+                        <img class="partners__prev-btn" src="./assets/images/btn-prev.svg" alt="Prev Button Icon" />
+                        <p>
+                            1/3
+                        </p>
+                        <img class="partners__next-btn" src="./assets/images/btn-next.svg" alt="Next Button Icon" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="section__about" id="about-the-games" aria-label="Section About the Games">
+                <div class="about__container">
+                    <h2 class="title">
+                        About the Games
+                    </h2>
+
+                    <div class="about__items">
+                        <article class="about__item">
+                            <div class="about__header">
+                                SPORTS
+                            </div>
+
+                            <div class="about__img">
+                                <img src="./assets/images/about-01.png" alt="About 01 Image" />
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore.
+                            </p>
+                        </article>
+
+                        <article class="about__item">
+                            <div class="about__header">
+                                VENUES
+                            </div>
+
+                            <div class="about__img">
+                                <img src="./assets/images/about-02.png" alt="About 02 Image" />
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore.
+                            </p>
+                        </article>
+
+                        <article class="about__item">
+                            <div class="about__header">
+                                CELEBRATING THE GAMES
+                            </div>
+
+                            <div class="about__img">
+                                <img src="./assets/images/about-03.png" alt="About 03 Image" />
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore.
+                            </p>
+                        </article>
+
+                        <article class="about__item">
+                            <div class="about__header">
+                                SPECTATOR INFORMATION
+                            </div>
+
+                            <div class="about__img">
+                                <img src="./assets/images/about-04.png" alt="About 04 Image" />
+                            </div>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="partners__nav about__nav">
+                        <img class="partners__prev-btn" src="./assets/images/btn-prev.svg" alt="Prev Button Icon" />
+                        <p>
+                            1/3
+                        </p>
+                        <img class="partners__next-btn" src="./assets/images/btn-next.svg" alt="Next Button Icon" />
+                    </div>
+
+                    <img class="about__logo" src="./assets/images/logo-emblem.png" alt="Logo Emblem" />
+                </div>
+            </section>
+
+            <section class="section__shop" id="olympic-shop" aria-label="Section Olympic Shop">
+                <div class="shop__container">
+                    <h2 class="title-2">
+                        Olympic Shop
+                    </h2>
+
+                    <a class="shop__link" href="#">
+                        See more products
+                    </a>
+
+                    <div class="shop__items">
+                        <article class="shop__item">
+                            <div class="shop__img">
+                                <img src="./assets/images/shop-01.png" alt="Shop 01 Image" />
+                            </div>
+
+                            <h4 class="shop__title">
+                                Latin Crest T-Shirt-White
+                            </h4>
+
+                            <div class="shop__action">
+                                <a class="shop__btn" href="#">
+                                    BUY NOW
+                                </a>
+                                <span>
+                                    $ 42
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="shop__item">
+                            <div class="shop__img">
+                                <img src="./assets/images/shop-02.png" alt="Shop 02 Image" />
+                            </div>
+
+                            <h4 class="shop__title">
+                                Logo Graphic T-Shirt-White
+                            </h4>
+
+                            <div class="shop__action">
+                                <a class="shop__btn" href="#">
+                                    BUY NOW
+                                </a>
+                                <span>
+                                    $ 45
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="shop__item">
+                            <div class="shop__img">
+                                <img src="./assets/images/shop-03.png" alt="Shop 03 Image" />
+                            </div>
+
+                            <h4 class="shop__title">
+                                Plush Mascot-15 cms
+                            </h4>
+
+                            <div class="shop__action">
+                                <a class="shop__btn" href="#">
+                                    BUY NOW
+                                </a>
+                                <span>
+                                    $ 25
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="shop__item">
+                            <div class="shop__img">
+                                <img src="./assets/images/shop-04.png" alt="Shop 04 Image" />
+                            </div>
+
+                            <h4 class="shop__title">
+                                Bobble Beanie
+                            </h4>
+
+                            <div class="shop__action">
+                                <a class="shop__btn" href="#">
+                                    BUY NOW
+                                </a>
+                                <span>
+                                    $ 35
+                                </span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="partners__nav shop__nav">
+                        <img class="partners__prev-btn" src="./assets/images/btn-prev.svg" alt="Prev Button Icon" />
+                        <p>
+                            1/3
+                        </p>
+                        <img class="partners__next-btn" src="./assets/images/btn-next.svg" alt="Next Button Icon" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="section__partners" id="worldwide-partners" aria-label="Section Worldwide Partners">
+                <div class="partners__container">
+                    <h2 class="title">
+                        Worldwide Partners
+                    </h2>
+
+                    <div class="partners__items">
+                        <div class="partners__row">
+                            <img src="./assets/images/partners/partner-01.png" alt="Partners 01 Image" />
+                            <img src="./assets/images/partners/partner-02.png" alt="Partners 02 Image" />
+                            <img src="./assets/images/partners/partner-03.png" alt="Partners 03 Image" />
+                            <img src="./assets/images/partners/partner-04.png" alt="Partners 04 Image" />
+                            <img src="./assets/images/partners/partner-05.png" alt="Partners 05 Image" />
+                        </div>
+                        <div class="partners__row">
+                            <img src="./assets/images/partners/partner-06.png" alt="Partners 06 Image" />
+                            <img src="./assets/images/partners/partner-07.png" alt="Partners 07 Image" />
+                            <img src="./assets/images/partners/partner-08.png" alt="Partners 08 Image" />
+                            <img src="./assets/images/partners/partner-09.png" alt="Partners 09 Image" />
+                            <img src="./assets/images/partners/partner-10.png" alt="Partners 10 Image" />
+                        </div>
+                        <div class="partners__row">
+                            <img src="./assets/images/partners/partner-11.png" alt="Partners 11 Image" />
+                            <img src="./assets/images/partners/partner-12.png" alt="Partners 12 Image" />
+                            <img src="./assets/images/partners/partner-13.png" alt="Partners 13 Image" />
+                            <img src="./assets/images/partners/partner-14.png" alt="Partners 14 Image" />
+                            <img src="./assets/images/partners/partner-15.png" alt="Partners 15 Image" />
+                        </div>
+                    </div>
+
+                    <div class="partners__nav">
+                        <img class="partners__prev-btn" src="./assets/images/btn-prev.svg" alt="Prev Button Icon" />
+                        <p>
+                            1/3
+                        </p>
+                        <img class="partners__next-btn" src="./assets/images/btn-next.svg" alt="Next Button Icon" />
+                    </div>
+                </div>
+            </section>
+            <!-- End Section Worldwide Partners -->
+        </main>
+
+        <footer class="footer" id="footer" aria-label="Footer">
+            <div class="footer__container">
+                <div class="footer__ads">
+                    <div class="footer__ad">
+                        <p class="ad__text">
+                            Download the Official App
+                        </p>
+                        <img src="./assets/images/icons-app.png" alt="Icons App" />
+                    </div>
+                    <div class="footer__ad">
+                        <p class="ad__text">
+                            Follow us on
+                        </p>
+                        <img src="./assets/images/icons-social.svg" alt="Icons Socials" />
+                    </div>
+                </div>
+
+                <img class="footer__logo" src="./assets/images/logos-white.png" alt="Logo White" />
+
+                <p class="footer__copyright">
+                    © Copyright 2024. All rights reserved
+                </p>
+            </div>
+        </footer>
+    </div>
+
 </body>
+
 </html>

@@ -1,0 +1,158 @@
+/* Road styles */
+
+.section__road {
+    position: relative;
+
+    background-color: var(--light-gray-color);
+
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+}
+
+.road__items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.road__item {
+    flex: 1 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+
+    background-color: white;
+
+    border-radius: 0.25rem;
+}
+
+.road__content {
+    padding: 0 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    font-family: 'Paris2024', serif;
+}
+
+.road__content p {
+    color: var(--gray-color);
+    font-size: 0.8rem;
+}
+
+.road__content div p {
+    color: black;
+}
+
+.road__img {
+    position: relative;
+
+    width: 100%;
+    height: calc(100% - 10px);
+
+    overflow: hidden;
+
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.road__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: all .3s ease;
+}
+
+.road__img:hover img {
+    transform: scale(1.5);
+}
+
+/* Partners Nav Styles */
+.partners__nav {
+    width: calc(100% - 1rem);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.road__container {
+    padding: 2rem 2rem 6rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.road__items {
+    padding-top: 3rem;
+}
+
+/* adaptive */
+
+@media screen and (max-width: 1024px) {
+    .road__container {
+        padding: 4rem 2rem 9rem 2rem;
+    }
+
+    .road__items {
+        padding-top: 3rem;
+    }
+
+    .road__item:nth-of-type(n + 3) {
+        display: none;
+    }
+
+    .partners__nav {
+        display: flex;
+    }
+
+    .road__container .title-2::after {
+        left: -7%;
+    }
+
+    .road__item {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+
+    .road__nav {
+        justify-content: end !important;
+    }
+
+    .road__container .title-2::after {
+        bottom: -39%;
+        right: -75%;
+        transform: scale(0.85);
+    }
+}
+
+@media screen and (max-width: 799px) {
+
+    .road__item:nth-of-type(n + 2) {
+        display: none;
+    }
+
+    .partners__nav {
+        margin-top: 1rem;
+
+        justify-content: space-between !important;
+    }
+
+    .road__container .title-2 {
+        font-size: 3.4rem;
+    }
+
+    .road__container .title-2::after {
+        bottom: -39%;
+        right: -55%;
+        transform: scale(0.65);
+    }
+
+    .road__item {
+        flex: 1 1 calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
+    }
+}

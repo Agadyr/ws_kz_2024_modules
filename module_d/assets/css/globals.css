@@ -1,0 +1,127 @@
+/* reset styles */
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.5;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+/* variables */
+:root {
+    --primary-color: #002395;
+    --danger-color: #ed2939;
+    --light-gray-color: #d5e2f0;
+    --medium-gray-color: #474747;
+    --dark-gray-color: #333;
+    --gray-color: #888;
+
+    --gradient: linear-gradient(to right, var(--danger-color), var(--primary-color))
+}
+
+/* import fonts */
+@font-face {
+    font-family: 'Paris2024';
+    src: url('../fonts/Paris2024/Paris2024-Variable.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins/Poppins-Regular.ttf');
+}
+
+/* container */
+[class*="__container"] {
+    max-width: 1440px;
+
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+/* texts */
+h1 {
+    font-family: 'Paris2024', serif;
+    font-weight: 600;
+    color: white;
+
+    font-size: clamp(2rem, 9.5vw, 4.5rem);
+}
+
+h2 {
+    font-family: 'Paris2024', serif;
+    font-weight: 600;
+    color: white;
+
+    font-size: clamp(0.5rem, 7vw, 3.3rem);
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+}
+
+.title {
+    position: relative;
+
+    width: fit-content;
+    margin: 0 auto;
+
+    text-align: center;
+
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-weight: bold;
+
+    font-size: clamp(2.75rem, 10vw, 4rem);
+}
+
+.title::after {
+    position: absolute;
+    content: url('../images/lines-titles.png');
+
+    bottom: -30%;
+    left: -25%;
+}
+
+.title-2 {
+    position: relative;
+
+    width: fit-content;
+    margin: 0 auto;
+
+    text-align: center;
+
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-weight: bold;
+
+    font-size: clamp(2.75rem, 10vw, 4rem);
+}
+
+.title-2::after {
+    position: absolute;
+    content: url('../images/lines-titles.png');
+
+    bottom: -30%;
+    right: -25%;
+}

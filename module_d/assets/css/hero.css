@@ -1,0 +1,139 @@
+/* Section Hero */
+
+.section__hero {
+    position: relative;
+
+    background-image: url('../images/hero-lg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.hero__container {
+    padding: 0.5rem;
+}
+
+.hero__content {
+    text-align: end;
+}
+
+.hero__content h1 {
+    line-height: 1;
+}
+
+.hero__content h2 {
+    opacity: 0.7;
+
+}
+
+/* Hero Content */
+.content__logo {
+    padding: 1rem 2rem;
+}
+
+.hero__nav {
+    position: absolute;
+    left: 41.5%;
+    bottom: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero__circles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    border-radius: 0.25rem;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    padding: 0.78rem 1.5rem;
+}
+
+.hero__circles>div {
+    width: 15px;
+    height: 15px;
+
+    background-color: var(--light-gray-color);
+
+    border-radius: 50%;
+
+    opacity: 0.5;
+}
+
+.hero__circles>div.active {
+    opacity: 1;
+}
+
+/* adaptive */
+
+@media screen and (max-width: 1024px) {
+    .hero__nav {
+        left: 37.5%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .hero__nav {
+        position: static;
+        bottom: auto;
+        left: auto;
+    }
+
+    .hero__circles {
+        display: none;
+    }
+
+    .hero__prev-btn {
+        position: absolute;
+        top: 45%;
+        left: 1rem;
+        cursor: pointer;
+
+        transition: transform .3s ease;
+    }
+
+    .hero__container {
+        padding: 1.5rem 1.5rem;
+    }
+
+
+    .hero__prev-btn:hover {
+        transform: scale(1.2);
+    }
+
+    .hero__next-btn {
+        position: absolute;
+        top: 45%;
+        right: 1rem;
+
+        cursor: pointer;
+
+        transition: all .3s ease;
+    }
+
+    .hero__next-btn:hover {
+        transform: scale(1.2);
+    }
+
+    .hero__mascot {
+        display: flex;
+        margin: 0 auto;
+
+        padding: 50% 0 15% 0;
+    }
+
+    .content__logo {
+        display: flex;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
